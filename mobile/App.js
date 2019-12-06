@@ -22,20 +22,41 @@ const instructions = Platform.select({
 
 export default class App extends Component {
 
+  state = {
+    onlineCount: 0,
+    color: '#f1f1f1'
+  };
+
   componentDidMount() {
-    this.io = io.connect('http://localhost:3001', {
+    // android için cmd -> ipconfig yazıp Ethernet adapter VirtualBox Host-Only Network: ipv4 değerini alın
+    // ios için http://localhost:3000
+
+    this.io = io.connect('http://192.168.56.1:3000', {
       timeout: 10000
     });
 
     this.io.on('connect', function(){
       console.log('Socket connected!');
      });
+
+     this.io.on('newUser', onlineCount => {
+      this.setState({
+        onlineCount,
+      });
+    });
+
+    this.io.on('disUser', onlineCount => {
+      this.setState({
+        onlineCount,
+      });
+    });
+
   }
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
+        <Text style={styles.instructions}>{this.state.onlineCount} Kullanıcı Aktif</Text>
         <Text style={styles.instructions}>{instructions}</Text>
       </View>
     );
