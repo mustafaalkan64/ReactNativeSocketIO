@@ -20,8 +20,9 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
 
+  
   componentDidMount() {
-    this.io = io.connect('https://localhost:3001', {
+    this.io = io.connect('http://localhost:3001', {
       timeout: 10000
     })
   }
