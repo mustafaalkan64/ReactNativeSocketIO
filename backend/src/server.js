@@ -81,10 +81,16 @@ http.listen(3001, function(){
     console.log('listening on *:3001');
 });
 
-io.on('connection', socket => {
+
+io.on('connection', (socket) => {
     console.log('new user');
     socket.on('disconnect', function(){
         console.log('user disconnected');
       });
 });
+
+
+
+
+
 

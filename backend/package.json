@@ -34,5 +34,8 @@
         "@models": "src/models",
         "@util": "src/util",
         "@routes": "src/routes"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.1"
     }
 }
